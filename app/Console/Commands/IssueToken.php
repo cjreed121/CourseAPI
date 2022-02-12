@@ -35,7 +35,7 @@ class IssueToken extends Command {
      * @return int
      */
     public function handle(): int {
-        $user = User::where('name', 'admin')->first();
+        $user = User::where('username', 'admin')->first();
         echo "Token: " . $user->createToken('admin-token', ['admin'])->plainTextToken . "\n";
         return 0;
     }
