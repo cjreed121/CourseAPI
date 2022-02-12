@@ -1,0 +1,1375 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://localhost";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.23.0.js"></script>
+
+    <script src="../docs/js/theme-default-3.23.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="courses">
+                    <a href="#courses">Courses</a>
+                </li>
+                                    <ul id="tocify-subheader-courses" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="courses-GETapi-semesters--semester--courses">
+                        <a href="#courses-GETapi-semesters--semester--courses">List courses</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="courses-GETapi-semesters--semester--sections--section-">
+                        <a href="#courses-GETapi-semesters--semester--sections--section-">Get course and section info by CRN</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="courses-GETapi-semesters--semester--courses--course-">
+                        <a href="#courses-GETapi-semesters--semester--courses--course-">Get specific course details by ID</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="courses-POSTapi-semesters--semester--courses">
+                        <a href="#courses-POSTapi-semesters--semester--courses">Create courses</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="semesters">
+                    <a href="#semesters">Semesters</a>
+                </li>
+                                    <ul id="tocify-subheader-semesters" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="semesters-GETapi-semesters">
+                        <a href="#semesters-GETapi-semesters">Get all semesters</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="semesters-POSTapi-semesters">
+                        <a href="#semesters-POSTapi-semesters">Create a new semester</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="semesters-GETapi-semesters--semester-">
+                        <a href="#semesters-GETapi-semesters--semester-">Get a specific semester</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="semesters-PUTapi-semesters--semester-">
+                        <a href="#semesters-PUTapi-semesters--semester-">Edit a semester</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="semesters-DELETEapi-semesters--semester-">
+                        <a href="#semesters-DELETEapi-semesters--semester-">Delete a semester</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: February 12 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>RPI Course API</p>
+<p>This documentation shows you how to use this API. You do not need an API token to use this. Authenticated routes are for write operations which is not public.</p>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>API tokens are generated from the CLI using &quot;php artisan token:issue.&quot;</p>
+
+        <h1 id="courses">Courses</h1>
+
+    
+
+            <h2 id="courses-GETapi-semesters--semester--courses">List courses</h2>
+
+<p>
+</p>
+
+<p>Returns a paginated list of courses. Up to 20 courses per page.</p>
+
+<span id="example-requests-GETapi-semesters--semester--courses">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/semesters/202201/courses?page=1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters/202201/courses"
+);
+
+const params = {
+    "page": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-semesters--semester--courses">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;Geology II: Earth&rsquo;s Surface&quot;,
+            &quot;department&quot;: &quot;ERTH&quot;,
+            &quot;description&quot;: &quot;The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.&quot;,
+            &quot;when_offered&quot;: &quot;When Offered: Spring term annually.&quot;,
+            &quot;prereqs&quot;: &quot;&quot;,
+            &quot;cross_list&quot;: &quot;&quot;,
+            &quot;course_number&quot;: &quot;1200&quot;,
+            &quot;credit_hours&quot;: &quot;3&quot;,
+            &quot;sections&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;instruction_method&quot;: null,
+                    &quot;section_number&quot;: &quot;01&quot;,
+                    &quot;enrolled&quot;: 112,
+                    &quot;max_enrolled&quot;: 120,
+                    &quot;remaining&quot;: 8,
+                    &quot;instructor&quot;: &quot;Cadieux&quot;,
+                    &quot;crn&quot;: 60084,
+                    &quot;periods&quot;: [
+                        {
+                            &quot;id&quot;: 1,
+                            &quot;location&quot;: &quot;RCKTTS 203&quot;,
+                            &quot;type&quot;: &quot;&quot;,
+                            &quot;start_time&quot;: &quot;08:00&quot;,
+                            &quot;end_time&quot;: &quot;09:50&quot;,
+                            &quot;days&quot;: [
+                                &quot;M&quot;,
+                                &quot;R&quot;
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;Geology II: Earth&rsquo;s Surface&quot;,
+            &quot;department&quot;: &quot;ERTH&quot;,
+            &quot;description&quot;: &quot;The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.&quot;,
+            &quot;when_offered&quot;: &quot;When Offered: Spring term annually.&quot;,
+            &quot;prereqs&quot;: &quot;&quot;,
+            &quot;cross_list&quot;: &quot;&quot;,
+            &quot;course_number&quot;: &quot;1200&quot;,
+            &quot;credit_hours&quot;: &quot;3&quot;,
+            &quot;sections&quot;: [
+                {
+                    &quot;id&quot;: 1,
+                    &quot;instruction_method&quot;: null,
+                    &quot;section_number&quot;: &quot;01&quot;,
+                    &quot;enrolled&quot;: 112,
+                    &quot;max_enrolled&quot;: 120,
+                    &quot;remaining&quot;: 8,
+                    &quot;instructor&quot;: &quot;Cadieux&quot;,
+                    &quot;crn&quot;: 60084,
+                    &quot;periods&quot;: [
+                        {
+                            &quot;id&quot;: 1,
+                            &quot;location&quot;: &quot;RCKTTS 203&quot;,
+                            &quot;type&quot;: &quot;&quot;,
+                            &quot;start_time&quot;: &quot;08:00&quot;,
+                            &quot;end_time&quot;: &quot;09:50&quot;,
+                            &quot;days&quot;: [
+                                &quot;M&quot;,
+                                &quot;R&quot;
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;/?page=1&quot;,
+        &quot;last&quot;: null,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;path&quot;: &quot;/&quot;,
+        &quot;per_page&quot;: &quot;20&quot;,
+        &quot;to&quot;: 2
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-semesters--semester--courses" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-semesters--semester--courses"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-semesters--semester--courses"></code></pre>
+</span>
+<span id="execution-error-GETapi-semesters--semester--courses" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-semesters--semester--courses"></code></pre>
+</span>
+<form id="form-GETapi-semesters--semester--courses" data-method="GET"
+      data-path="api/semesters/{semester}/courses"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-semesters--semester--courses', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-semesters--semester--courses"
+                    onclick="tryItOut('GETapi-semesters--semester--courses');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-semesters--semester--courses"
+                    onclick="cancelTryOut('GETapi-semesters--semester--courses');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-semesters--semester--courses" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/semesters/{semester}/courses</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>semester</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="semester"
+               data-endpoint="GETapi-semesters--semester--courses"
+               value="202201"
+               data-component="url" hidden>
+    <br>
+<p>The code for the target semester.</p>
+            </p>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETapi-semesters--semester--courses"
+               value="1"
+               data-component="query" hidden>
+    <br>
+
+            </p>
+                </form>
+
+            <h2 id="courses-GETapi-semesters--semester--sections--section-">Get course and section info by CRN</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-semesters--semester--sections--section-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/semesters/202201/sections/60353" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters/202201/sections/60353"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-semesters--semester--sections--section-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 57
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;title&quot;: &quot;Environmental and Ecological Systems&quot;,
+        &quot;department&quot;: &quot;ARCH&quot;,
+        &quot;course_number&quot;: &quot;2360&quot;,
+        &quot;credit_hours&quot;: &quot;4&quot;,
+        &quot;description&quot;: &quot;An exploration of the fundamental principles of human physiology, thermal and luminous comfort, and indoor quality. Emphasis is on bioclimatic and psychrometric climate analysis and its relationship to architectural design, understanding the energy exchange between body in space, the natural meaning of enclosures, and nonstructural materials and systems. The focus is on passive heating, cooling, and daylighting systems and their design. Exercises include vital sign analysis of existing spaces (thermal, air, luminous), forming hypotheses of building performance, using scientific instrumentation, tenant survey techniques, and physical modeling and simulation techniques related to daylighting and shading techniques.&quot;,
+        &quot;when_offered&quot;: &quot;When Offered: Spring term annually.&quot;,
+        &quot;prereqs&quot;: &quot;Prerequisites/Corequisites: Prerequisites: ARCH 2370 Energy, Comfort and Ecology. Corequisites: PHYS 1500, ARCH 2830.&quot;,
+        &quot;cross_list&quot;: &quot;Cross Listed: ARCH 5310 Environmental and Ecological Systems&quot;,
+        &quot;section_number&quot;: &quot;01&quot;,
+        &quot;crn&quot;: 60353,
+        &quot;instructor&quot;: &quot;Stradley&quot;,
+        &quot;enrolled&quot;: 64,
+        &quot;max_enrolled&quot;: 80,
+        &quot;remaining&quot;: 16,
+        &quot;instruction_method&quot;: null,
+        &quot;periods&quot;: [
+            {
+                &quot;id&quot;: 235,
+                &quot;location&quot;: &quot;DARRIN 337&quot;,
+                &quot;type&quot;: &quot;STU&quot;,
+                &quot;start_time&quot;: &quot;08:00&quot;,
+                &quot;end_time&quot;: &quot;09:50&quot;,
+                &quot;days&quot;: [
+                    &quot;M&quot;,
+                    &quot;R&quot;
+                ]
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-semesters--semester--sections--section-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-semesters--semester--sections--section-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-semesters--semester--sections--section-"></code></pre>
+</span>
+<span id="execution-error-GETapi-semesters--semester--sections--section-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-semesters--semester--sections--section-"></code></pre>
+</span>
+<form id="form-GETapi-semesters--semester--sections--section-" data-method="GET"
+      data-path="api/semesters/{semester}/sections/{section}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-semesters--semester--sections--section-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-semesters--semester--sections--section-"
+                    onclick="tryItOut('GETapi-semesters--semester--sections--section-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-semesters--semester--sections--section-"
+                    onclick="cancelTryOut('GETapi-semesters--semester--sections--section-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-semesters--semester--sections--section-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/semesters/{semester}/sections/{section}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>semester</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="semester"
+               data-endpoint="GETapi-semesters--semester--sections--section-"
+               value="202201"
+               data-component="url" hidden>
+    <br>
+<p>The code for the target semester.</p>
+            </p>
+                    <p>
+                <b><code>section</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="section"
+               data-endpoint="GETapi-semesters--semester--sections--section-"
+               value="60353"
+               data-component="url" hidden>
+    <br>
+<p>The CRN of the section.</p>
+            </p>
+                    </form>
+
+            <h2 id="courses-GETapi-semesters--semester--courses--course-">Get specific course details by ID</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-semesters--semester--courses--course-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/semesters/202201/courses/15" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters/202201/courses/15"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-semesters--semester--courses--course-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;title&quot;: &quot;Geology II: Earth&rsquo;s Surface&quot;,
+        &quot;department&quot;: &quot;ERTH&quot;,
+        &quot;description&quot;: &quot;The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.&quot;,
+        &quot;when_offered&quot;: &quot;When Offered: Spring term annually.&quot;,
+        &quot;prereqs&quot;: &quot;&quot;,
+        &quot;cross_list&quot;: &quot;&quot;,
+        &quot;course_number&quot;: &quot;1200&quot;,
+        &quot;credit_hours&quot;: &quot;3&quot;,
+        &quot;sections&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;instruction_method&quot;: null,
+                &quot;section_number&quot;: &quot;01&quot;,
+                &quot;enrolled&quot;: 112,
+                &quot;max_enrolled&quot;: 120,
+                &quot;remaining&quot;: 8,
+                &quot;instructor&quot;: &quot;Cadieux&quot;,
+                &quot;crn&quot;: 60084,
+                &quot;periods&quot;: [
+                    {
+                        &quot;id&quot;: 1,
+                        &quot;location&quot;: &quot;RCKTTS 203&quot;,
+                        &quot;type&quot;: &quot;&quot;,
+                        &quot;start_time&quot;: &quot;08:00&quot;,
+                        &quot;end_time&quot;: &quot;09:50&quot;,
+                        &quot;days&quot;: [
+                            &quot;M&quot;,
+                            &quot;R&quot;
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-semesters--semester--courses--course-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-semesters--semester--courses--course-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-semesters--semester--courses--course-"></code></pre>
+</span>
+<span id="execution-error-GETapi-semesters--semester--courses--course-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-semesters--semester--courses--course-"></code></pre>
+</span>
+<form id="form-GETapi-semesters--semester--courses--course-" data-method="GET"
+      data-path="api/semesters/{semester}/courses/{course}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-semesters--semester--courses--course-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-semesters--semester--courses--course-"
+                    onclick="tryItOut('GETapi-semesters--semester--courses--course-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-semesters--semester--courses--course-"
+                    onclick="cancelTryOut('GETapi-semesters--semester--courses--course-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-semesters--semester--courses--course-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/semesters/{semester}/courses/{course}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>semester</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="semester"
+               data-endpoint="GETapi-semesters--semester--courses--course-"
+               value="202201"
+               data-component="url" hidden>
+    <br>
+<p>The code for the target semester.</p>
+            </p>
+                    <p>
+                <b><code>course</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="course"
+               data-endpoint="GETapi-semesters--semester--courses--course-"
+               value="15"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the course.</p>
+            </p>
+                    </form>
+
+            <h2 id="courses-POSTapi-semesters--semester--courses">Create courses</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Deletes all courses and creates new courses from provided JSON.</p>
+<p>JSON is passed in as body</p>
+
+<span id="example-requests-POSTapi-semesters--semester--courses">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/semesters/202201/courses" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters/202201/courses"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-semesters--semester--courses">
+</span>
+<span id="execution-results-POSTapi-semesters--semester--courses" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-semesters--semester--courses"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-semesters--semester--courses"></code></pre>
+</span>
+<span id="execution-error-POSTapi-semesters--semester--courses" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-semesters--semester--courses"></code></pre>
+</span>
+<form id="form-POSTapi-semesters--semester--courses" data-method="POST"
+      data-path="api/semesters/{semester}/courses"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-semesters--semester--courses', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-semesters--semester--courses"
+                    onclick="tryItOut('POSTapi-semesters--semester--courses');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-semesters--semester--courses"
+                    onclick="cancelTryOut('POSTapi-semesters--semester--courses');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-semesters--semester--courses" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/semesters/{semester}/courses</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-semesters--semester--courses" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-semesters--semester--courses"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>semester</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="semester"
+               data-endpoint="POSTapi-semesters--semester--courses"
+               value="202201"
+               data-component="url" hidden>
+    <br>
+<p>The code for the target semester.</p>
+            </p>
+                    </form>
+
+        <h1 id="semesters">Semesters</h1>
+
+    
+
+            <h2 id="semesters-GETapi-semesters">Get all semesters</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-semesters">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/semesters" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-semesters">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">[
+    {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Spring 2022&quot;,
+        &quot;code&quot;: 202201,
+        &quot;start&quot;: &quot;2022-01-10&quot;,
+        &quot;end&quot;: &quot;2022-05-10&quot;
+    }
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-semesters" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-semesters"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-semesters"></code></pre>
+</span>
+<span id="execution-error-GETapi-semesters" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-semesters"></code></pre>
+</span>
+<form id="form-GETapi-semesters" data-method="GET"
+      data-path="api/semesters"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-semesters', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-semesters"
+                    onclick="tryItOut('GETapi-semesters');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-semesters"
+                    onclick="cancelTryOut('GETapi-semesters');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-semesters" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/semesters</code></b>
+        </p>
+                    </form>
+
+            <h2 id="semesters-POSTapi-semesters">Create a new semester</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-semesters">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/semesters" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"frczcudhzvujpkiunlbiilqpgpcugmiyawkdvbadztwclvwbeycotvmibnehjvsrreaovhghctbrafsypphlnigvzohfbftvclyfekiqszptofyqvmbesrbxiytxnhgjdfvnywnmvhpkpvpcfxyluimrgpbdsdxrfvzpjirnsiyh\",
+    \"code\": 8,
+    \"start\": \"2022-02-12T00:01:00\",
+    \"end\": \"2022-02-12T00:01:00\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "frczcudhzvujpkiunlbiilqpgpcugmiyawkdvbadztwclvwbeycotvmibnehjvsrreaovhghctbrafsypphlnigvzohfbftvclyfekiqszptofyqvmbesrbxiytxnhgjdfvnywnmvhpkpvpcfxyluimrgpbdsdxrfvzpjirnsiyh",
+    "code": 8,
+    "start": "2022-02-12T00:01:00",
+    "end": "2022-02-12T00:01:00"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-semesters">
+</span>
+<span id="execution-results-POSTapi-semesters" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-semesters"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-semesters"></code></pre>
+</span>
+<span id="execution-error-POSTapi-semesters" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-semesters"></code></pre>
+</span>
+<form id="form-POSTapi-semesters" data-method="POST"
+      data-path="api/semesters"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-semesters', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-semesters"
+                    onclick="tryItOut('POSTapi-semesters');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-semesters"
+                    onclick="cancelTryOut('POSTapi-semesters');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-semesters" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/semesters</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-semesters" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-semesters"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-semesters"
+               value="frczcudhzvujpkiunlbiilqpgpcugmiyawkdvbadztwclvwbeycotvmibnehjvsrreaovhghctbrafsypphlnigvzohfbftvclyfekiqszptofyqvmbesrbxiytxnhgjdfvnywnmvhpkpvpcfxyluimrgpbdsdxrfvzpjirnsiyh"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>code</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="code"
+               data-endpoint="POSTapi-semesters"
+               value="8"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>start</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start"
+               data-endpoint="POSTapi-semesters"
+               value="2022-02-12T00:01:00"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>end</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end"
+               data-endpoint="POSTapi-semesters"
+               value="2022-02-12T00:01:00"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+        </form>
+
+            <h2 id="semesters-GETapi-semesters--semester-">Get a specific semester</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-semesters--semester-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/semesters/202201" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters/202201"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-semesters--semester-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Spring 2022&quot;,
+    &quot;code&quot;: 202201,
+    &quot;start&quot;: &quot;2022-01-10&quot;,
+    &quot;end&quot;: &quot;2022-05-10&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-semesters--semester-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-semesters--semester-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-semesters--semester-"></code></pre>
+</span>
+<span id="execution-error-GETapi-semesters--semester-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-semesters--semester-"></code></pre>
+</span>
+<form id="form-GETapi-semesters--semester-" data-method="GET"
+      data-path="api/semesters/{semester}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-semesters--semester-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-semesters--semester-"
+                    onclick="tryItOut('GETapi-semesters--semester-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-semesters--semester-"
+                    onclick="cancelTryOut('GETapi-semesters--semester-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-semesters--semester-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/semesters/{semester}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>semester</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="semester"
+               data-endpoint="GETapi-semesters--semester-"
+               value="202201"
+               data-component="url" hidden>
+    <br>
+<p>The code of the semester.</p>
+            </p>
+                    </form>
+
+            <h2 id="semesters-PUTapi-semesters--semester-">Edit a semester</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-semesters--semester-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/api/semesters/202201" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"oaymiqtwsolbspwmnblheraliujmsstjboncjnekpoupykkzaatsgeiysigpqtzalctpqerapwrzfeliiebmjxgpnebxlmpidurfdtqildmqyrzaeblzlnoamdslumksjribaatknlslylsoteaulgusyrkbjylocukaegfdccjvozebhdgvhfheeidezpfxrpswrsgaedxdwejbvdtogpiwqbsjapkowekxlaiowewxhtzjmwxtmo\",
+    \"code\": 3,
+    \"start\": \"2022-02-12T00:01:00\",
+    \"end\": \"2022-02-12T00:01:00\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters/202201"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "oaymiqtwsolbspwmnblheraliujmsstjboncjnekpoupykkzaatsgeiysigpqtzalctpqerapwrzfeliiebmjxgpnebxlmpidurfdtqildmqyrzaeblzlnoamdslumksjribaatknlslylsoteaulgusyrkbjylocukaegfdccjvozebhdgvhfheeidezpfxrpswrsgaedxdwejbvdtogpiwqbsjapkowekxlaiowewxhtzjmwxtmo",
+    "code": 3,
+    "start": "2022-02-12T00:01:00",
+    "end": "2022-02-12T00:01:00"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-semesters--semester-">
+</span>
+<span id="execution-results-PUTapi-semesters--semester-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-semesters--semester-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-semesters--semester-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-semesters--semester-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-semesters--semester-"></code></pre>
+</span>
+<form id="form-PUTapi-semesters--semester-" data-method="PUT"
+      data-path="api/semesters/{semester}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-semesters--semester-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-semesters--semester-"
+                    onclick="tryItOut('PUTapi-semesters--semester-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-semesters--semester-"
+                    onclick="cancelTryOut('PUTapi-semesters--semester-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-semesters--semester-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/semesters/{semester}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/semesters/{semester}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-semesters--semester-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-semesters--semester-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>semester</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="semester"
+               data-endpoint="PUTapi-semesters--semester-"
+               value="202201"
+               data-component="url" hidden>
+    <br>
+<p>The code of the semester.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PUTapi-semesters--semester-"
+               value="oaymiqtwsolbspwmnblheraliujmsstjboncjnekpoupykkzaatsgeiysigpqtzalctpqerapwrzfeliiebmjxgpnebxlmpidurfdtqildmqyrzaeblzlnoamdslumksjribaatknlslylsoteaulgusyrkbjylocukaegfdccjvozebhdgvhfheeidezpfxrpswrsgaedxdwejbvdtogpiwqbsjapkowekxlaiowewxhtzjmwxtmo"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>code</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="code"
+               data-endpoint="PUTapi-semesters--semester-"
+               value="3"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>start</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start"
+               data-endpoint="PUTapi-semesters--semester-"
+               value="2022-02-12T00:01:00"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>end</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end"
+               data-endpoint="PUTapi-semesters--semester-"
+               value="2022-02-12T00:01:00"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+        </form>
+
+            <h2 id="semesters-DELETEapi-semesters--semester-">Delete a semester</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-semesters--semester-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/api/semesters/202201" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/semesters/202201"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-semesters--semester-">
+</span>
+<span id="execution-results-DELETEapi-semesters--semester-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-semesters--semester-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-semesters--semester-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-semesters--semester-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-semesters--semester-"></code></pre>
+</span>
+<form id="form-DELETEapi-semesters--semester-" data-method="DELETE"
+      data-path="api/semesters/{semester}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-semesters--semester-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-semesters--semester-"
+                    onclick="tryItOut('DELETEapi-semesters--semester-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-semesters--semester-"
+                    onclick="cancelTryOut('DELETEapi-semesters--semester-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-semesters--semester-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/semesters/{semester}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-semesters--semester-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-semesters--semester-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>semester</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="semester"
+               data-endpoint="DELETEapi-semesters--semester-"
+               value="202201"
+               data-component="url" hidden>
+    <br>
+<p>The code of the semester.</p>
+            </p>
+                    </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

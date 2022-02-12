@@ -1,0 +1,245 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RPI Course API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/semesters/{code}/courses": {
+            "get": {
+                "summary": "Returns all courses for semester",
+                "description": "Display a listing of the resource.",
+                "operationId": "03059e536a77f2e2cdf5e08cc90e9303",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "Semester code",
+                        "required": true,
+                        "example": "202201"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Course"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/semesters": {
+            "get": {
+                "summary": "Display known semesters",
+                "description": "Display a listing of the resource.",
+                "operationId": "561e1b42753515f432cba7fcca5ce9ad",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Semester"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/semesters/{code}": {
+            "get": {
+                "summary": "Display specified semester",
+                "description": "Display the specified resource.",
+                "operationId": "a17c0674cc01f10dbfd16db0f281093d",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "Semester code",
+                        "required": true,
+                        "example": "202201"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Semester"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Course": {
+                "title": "Course",
+                "description": "Course model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Data Structures"
+                    },
+                    "course_number": {
+                        "type": "string",
+                        "example": "1200"
+                    },
+                    "department": {
+                        "type": "string",
+                        "example": "CSCI"
+                    },
+                    "credit_hours": {
+                        "type": "string",
+                        "example": "4"
+                    },
+                    "semester_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "sections": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Section"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Period": {
+                "title": "Period",
+                "description": "Period model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "location": {
+                        "type": "string",
+                        "example": "DCC 318"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "LEC"
+                    },
+                    "start_time": {
+                        "type": "string",
+                        "example": "13:00"
+                    },
+                    "end_time": {
+                        "type": "string",
+                        "example": "14:00"
+                    },
+                    "days": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": [
+                                "M",
+                                "T"
+                            ]
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Section": {
+                "title": "Section",
+                "description": "Section model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "instruction_method": {
+                        "type": "string"
+                    },
+                    "section_number": {
+                        "type": "string",
+                        "example": "01"
+                    },
+                    "enrolled": {
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "max_enrolled": {
+                        "type": "integer",
+                        "example": "15"
+                    },
+                    "remaining": {
+                        "type": "integer",
+                        "example": "5"
+                    },
+                    "instructor": {
+                        "type": "string"
+                    },
+                    "crn": {
+                        "type": "integer",
+                        "example": "55555"
+                    },
+                    "course_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "periods": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Period"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Semester": {
+                "title": "Semester",
+                "description": "Semester model",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Spring 2022"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": "202201"
+                    },
+                    "start": {
+                        "type": "string",
+                        "example": "2022-01-10"
+                    },
+                    "end": {
+                        "type": "string",
+                        "example": "2022-05-10"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

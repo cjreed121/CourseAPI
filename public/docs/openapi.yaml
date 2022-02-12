@@ -1,0 +1,705 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: 'RPI Course API'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  '/api/semesters/{semester}/courses':
+    get:
+      summary: 'List courses'
+      description: 'Returns a paginated list of courses. Up to 20 courses per page.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: ''
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: ''
+            example: 1
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      title: 'Geology II: Earth’s Surface'
+                      department: ERTH
+                      description: 'The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.'
+                      when_offered: 'When Offered: Spring term annually.'
+                      prereqs: ''
+                      cross_list: ''
+                      course_number: '1200'
+                      credit_hours: '3'
+                      sections:
+                        -
+                          id: 1
+                          instruction_method: null
+                          section_number: '01'
+                          enrolled: 112
+                          max_enrolled: 120
+                          remaining: 8
+                          instructor: Cadieux
+                          crn: 60084
+                          periods:
+                            -
+                              id: 1
+                              location: 'RCKTTS 203'
+                              type: ''
+                              start_time: '08:00'
+                              end_time: '09:50'
+                              days:
+                                - M
+                                - R
+                    -
+                      id: 1
+                      title: 'Geology II: Earth’s Surface'
+                      department: ERTH
+                      description: 'The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.'
+                      when_offered: 'When Offered: Spring term annually.'
+                      prereqs: ''
+                      cross_list: ''
+                      course_number: '1200'
+                      credit_hours: '3'
+                      sections:
+                        -
+                          id: 1
+                          instruction_method: null
+                          section_number: '01'
+                          enrolled: 112
+                          max_enrolled: 120
+                          remaining: 8
+                          instructor: Cadieux
+                          crn: 60084
+                          periods:
+                            -
+                              id: 1
+                              location: 'RCKTTS 203'
+                              type: ''
+                              start_time: '08:00'
+                              end_time: '09:50'
+                              days:
+                                - M
+                                - R
+                  links:
+                    first: '/?page=1'
+                    last: null
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    path: /
+                    per_page: '20'
+                    to: 2
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        title: 'Geology II: Earth’s Surface'
+                        department: ERTH
+                        description: 'The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.'
+                        when_offered: 'When Offered: Spring term annually.'
+                        prereqs: ''
+                        cross_list: ''
+                        course_number: '1200'
+                        credit_hours: '3'
+                        sections:
+                          -
+                            id: 1
+                            instruction_method: null
+                            section_number: '01'
+                            enrolled: 112
+                            max_enrolled: 120
+                            remaining: 8
+                            instructor: Cadieux
+                            crn: 60084
+                            periods:
+                              -
+                                id: 1
+                                location: 'RCKTTS 203'
+                                type: ''
+                                start_time: '08:00'
+                                end_time: '09:50'
+                                days:
+                                  - M
+                                  - R
+                      -
+                        id: 1
+                        title: 'Geology II: Earth’s Surface'
+                        department: ERTH
+                        description: 'The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.'
+                        when_offered: 'When Offered: Spring term annually.'
+                        prereqs: ''
+                        cross_list: ''
+                        course_number: '1200'
+                        credit_hours: '3'
+                        sections:
+                          -
+                            id: 1
+                            instruction_method: null
+                            section_number: '01'
+                            enrolled: 112
+                            max_enrolled: 120
+                            remaining: 8
+                            instructor: Cadieux
+                            crn: 60084
+                            periods:
+                              -
+                                id: 1
+                                location: 'RCKTTS 203'
+                                type: ''
+                                start_time: '08:00'
+                                end_time: '09:50'
+                                days:
+                                  - M
+                                  - R
+                    items:
+                      type: object
+                  links:
+                    type: object
+                    example:
+                      first: '/?page=1'
+                      last: null
+                      prev: null
+                      next: null
+                  meta:
+                    type: object
+                    example:
+                      current_page: 1
+                      from: 1
+                      path: /
+                      per_page: '20'
+                      to: 2
+      tags:
+        - Courses
+      security: []
+    post:
+      summary: 'Create courses'
+      description: "Deletes all courses and creates new courses from provided JSON.\n\nJSON is passed in as body"
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Courses
+    parameters:
+      -
+        in: path
+        name: semester
+        description: 'The code for the target semester.'
+        example: 202201
+        required: true
+        schema:
+          type: integer
+  '/api/semesters/{semester}/sections/{section}':
+    get:
+      summary: 'Get course and section info by CRN'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    title: 'Environmental and Ecological Systems'
+                    department: ARCH
+                    course_number: '2360'
+                    credit_hours: '4'
+                    description: 'An exploration of the fundamental principles of human physiology, thermal and luminous comfort, and indoor quality. Emphasis is on bioclimatic and psychrometric climate analysis and its relationship to architectural design, understanding the energy exchange between body in space, the natural meaning of enclosures, and nonstructural materials and systems. The focus is on passive heating, cooling, and daylighting systems and their design. Exercises include vital sign analysis of existing spaces (thermal, air, luminous), forming hypotheses of building performance, using scientific instrumentation, tenant survey techniques, and physical modeling and simulation techniques related to daylighting and shading techniques.'
+                    when_offered: 'When Offered: Spring term annually.'
+                    prereqs: 'Prerequisites/Corequisites: Prerequisites: ARCH 2370 Energy, Comfort and Ecology. Corequisites: PHYS 1500, ARCH 2830.'
+                    cross_list: 'Cross Listed: ARCH 5310 Environmental and Ecological Systems'
+                    section_number: '01'
+                    crn: 60353
+                    instructor: Stradley
+                    enrolled: 64
+                    max_enrolled: 80
+                    remaining: 16
+                    instruction_method: null
+                    periods:
+                      -
+                        id: 235
+                        location: 'DARRIN 337'
+                        type: STU
+                        start_time: '08:00'
+                        end_time: '09:50'
+                        days:
+                          - M
+                          - R
+                properties:
+                  data:
+                    type: object
+                    example:
+                      title: 'Environmental and Ecological Systems'
+                      department: ARCH
+                      course_number: '2360'
+                      credit_hours: '4'
+                      description: 'An exploration of the fundamental principles of human physiology, thermal and luminous comfort, and indoor quality. Emphasis is on bioclimatic and psychrometric climate analysis and its relationship to architectural design, understanding the energy exchange between body in space, the natural meaning of enclosures, and nonstructural materials and systems. The focus is on passive heating, cooling, and daylighting systems and their design. Exercises include vital sign analysis of existing spaces (thermal, air, luminous), forming hypotheses of building performance, using scientific instrumentation, tenant survey techniques, and physical modeling and simulation techniques related to daylighting and shading techniques.'
+                      when_offered: 'When Offered: Spring term annually.'
+                      prereqs: 'Prerequisites/Corequisites: Prerequisites: ARCH 2370 Energy, Comfort and Ecology. Corequisites: PHYS 1500, ARCH 2830.'
+                      cross_list: 'Cross Listed: ARCH 5310 Environmental and Ecological Systems'
+                      section_number: '01'
+                      crn: 60353
+                      instructor: Stradley
+                      enrolled: 64
+                      max_enrolled: 80
+                      remaining: 16
+                      instruction_method: null
+                      periods:
+                        -
+                          id: 235
+                          location: 'DARRIN 337'
+                          type: STU
+                          start_time: '08:00'
+                          end_time: '09:50'
+                          days:
+                            - M
+                            - R
+      tags:
+        - Courses
+      security: []
+    parameters:
+      -
+        in: path
+        name: semester
+        description: 'The code for the target semester.'
+        example: 202201
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: section
+        description: 'The CRN of the section.'
+        example: 60353
+        required: true
+        schema:
+          type: integer
+  '/api/semesters/{semester}/courses/{course}':
+    get:
+      summary: 'Get specific course details by ID'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    title: 'Geology II: Earth’s Surface'
+                    department: ERTH
+                    description: 'The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.'
+                    when_offered: 'When Offered: Spring term annually.'
+                    prereqs: ''
+                    cross_list: ''
+                    course_number: '1200'
+                    credit_hours: '3'
+                    sections:
+                      -
+                        id: 1
+                        instruction_method: null
+                        section_number: '01'
+                        enrolled: 112
+                        max_enrolled: 120
+                        remaining: 8
+                        instructor: Cadieux
+                        crn: 60084
+                        periods:
+                          -
+                            id: 1
+                            location: 'RCKTTS 203'
+                            type: ''
+                            start_time: '08:00'
+                            end_time: '09:50'
+                            days:
+                              - M
+                              - R
+                properties:
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      title: 'Geology II: Earth’s Surface'
+                      department: ERTH
+                      description: 'The geological environment of humankind: the atmosphere, oceans, groundwater, rivers, glaciers, deserts, and soils. The course explores the processes by which these and other features develop and change, both naturally and as a result of human activity.'
+                      when_offered: 'When Offered: Spring term annually.'
+                      prereqs: ''
+                      cross_list: ''
+                      course_number: '1200'
+                      credit_hours: '3'
+                      sections:
+                        -
+                          id: 1
+                          instruction_method: null
+                          section_number: '01'
+                          enrolled: 112
+                          max_enrolled: 120
+                          remaining: 8
+                          instructor: Cadieux
+                          crn: 60084
+                          periods:
+                            -
+                              id: 1
+                              location: 'RCKTTS 203'
+                              type: ''
+                              start_time: '08:00'
+                              end_time: '09:50'
+                              days:
+                                - M
+                                - R
+      tags:
+        - Courses
+      security: []
+    parameters:
+      -
+        in: path
+        name: semester
+        description: 'The code for the target semester.'
+        example: 202201
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: course
+        description: 'The ID of the course.'
+        example: 15
+        required: true
+        schema:
+          type: integer
+  /api/semesters:
+    get:
+      summary: 'Get all semesters'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 1
+                    name: 'Spring 2022'
+                    code: 202201
+                    start: '2022-01-10'
+                    end: '2022-05-10'
+      tags:
+        - Semesters
+      security: []
+    post:
+      summary: 'Create a new semester'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Semesters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: frczcudhzvujpkiunlbiilqpgpcugmiyawkdvbadztwclvwbeycotvmibnehjvsrreaovhghctbrafsypphlnigvzohfbftvclyfekiqszptofyqvmbesrbxiytxnhgjdfvnywnmvhpkpvpcfxyluimrgpbdsdxrfvzpjirnsiyh
+                code:
+                  type: integer
+                  description: ''
+                  example: 8
+                start:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2022-02-12T00:01:00'
+                end:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2022-02-12T00:01:00'
+              required:
+                - name
+                - code
+                - start
+                - end
+  '/api/semesters/{semester}':
+    get:
+      summary: 'Get a specific semester'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'Spring 2022'
+                  code: 202201
+                  start: '2022-01-10'
+                  end: '2022-05-10'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Spring 2022'
+                  code:
+                    type: integer
+                    example: 202201
+                  start:
+                    type: string
+                    example: '2022-01-10'
+                  end:
+                    type: string
+                    example: '2022-05-10'
+      tags:
+        - Semesters
+      security: []
+    put:
+      summary: 'Edit a semester'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Semesters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: oaymiqtwsolbspwmnblheraliujmsstjboncjnekpoupykkzaatsgeiysigpqtzalctpqerapwrzfeliiebmjxgpnebxlmpidurfdtqildmqyrzaeblzlnoamdslumksjribaatknlslylsoteaulgusyrkbjylocukaegfdccjvozebhdgvhfheeidezpfxrpswrsgaedxdwejbvdtogpiwqbsjapkowekxlaiowewxhtzjmwxtmo
+                code:
+                  type: integer
+                  description: ''
+                  example: 3
+                start:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2022-02-12T00:01:00'
+                end:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2022-02-12T00:01:00'
+              required:
+                - name
+                - code
+                - start
+                - end
+    delete:
+      summary: 'Delete a semester'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Semesters
+    parameters:
+      -
+        in: path
+        name: semester
+        description: 'The code of the semester.'
+        example: 202201
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Courses
+    description: ''
+  -
+    name: Semesters
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []
